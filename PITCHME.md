@@ -1,13 +1,14 @@
 ---
 marp: true
-theme: gaia
+theme: simple
+class:
+  - lead
 paginate: true
 header: 'Pragmatic Programmers - Refactoring to functional style'
 footer: 'Dawid Bińkuś & Mateusz Małecki'
 
 ---
-![bg](#)
-<!-- _class: lead -->
+<!-- _class: invert -->
 # Refactoring to functional style
 Pragmatic Programmers - Dawid Bińkuś & Mateusz Małecki  
 
