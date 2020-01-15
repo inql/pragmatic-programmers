@@ -1,19 +1,18 @@
 ---
 marp: true
-theme: simple
+theme: gaia
 paginate: true
-header: 'Pragmatic Programmers - Presentation name'
+header: 'Pragmatic Programmers - Refactoring to functional style'
 footer: 'Dawid Bińkuś & Mateusz Małecki'
 
 ---
 ![bg](#)
 <!-- _class: lead -->
-# Sample slide deck
-Sample slide deck converted from MarkDown by Marp Next.   
-
+# Refactoring to functional style
+Pragmatic Programmers - Dawid Bińkuś & Mateusz Małecki  
 
 ---
-# Test
+# Agenda
 ## List structures
 test text text
 * List
