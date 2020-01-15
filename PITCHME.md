@@ -1,75 +1,72 @@
 ---
 marp: true
-title: Marp CLI example
-description: Hosting Marp slide deck on the web
-theme: uncover
+theme: simple
 paginate: true
-_paginate: false
+header: 'Header'
+footer: 'Footer'
+
 ---
+<!-- _class: lead -->
+# Sample slide deck
+Sample slide deck converted from MarkDown by Marp Next.   
 
-![bg](./assets/gradient.jpg)
-
-# <!--fit--> Marp CLI example
-
-Hosting Marp slide deck on the web
-
-https://github.com/yhatt/marp-cli-example
-
-<style scoped>a { color: #eee; }</style>
+@ttyskg
 
 ---
 
-![Marp bg 60%](https://raw.githubusercontent.com/marp-team/marp/master/marp.png)
+## List structures
+test text text
+* List
+* List
+* List
+  * Sublist
+  * Sublist
 
 ---
 
-![bg](#123)
-![](#fff)
+## Table
 
-##### <!--fit--> [Marp CLI](https://github.com/marp-team/marp-cli) + [GitHub Pages](https://github.com/pages) | [Netlify](https://www.netlify.com/) | [ZEIT Now](https://zeit.co/now)
-
-##### <!--fit--> 👉 The easiest way to host<br />your Marp deck on the web
-
----
-
-![bg right 70%](https://icongr.am/octicons/mark-github.svg)
-
-## **[GitHub Pages](https://github.com/pages)**
-
-#### Ready to write & host your deck!
-
-[![Fork on GitHub h:1.5em](https://img.shields.io/github/forks/yhatt/marp-cli-example?label=Fork&style=social)](https://github.com/yhatt/marp-cli-example)
-
-<!-- _footer: ":information_source: Require to pass ACCESS_TOKEN as secret." -->
+|      | col1 | col2 | col3 |
+| ---- | ---- | ---- | ---- |
+| row1 | item | item | item |
+| row2 | item | item | item |
+| row3 | item | item | item |
 
 ---
 
-![bg right 70%](https://www.netlify.com/img/press/logos/logomark.svg)
+## Figure insert
 
-## **[Netlify](https://www.netlify.com/)**
+This is my icon.
 
-#### Ready to write & host your deck!
+![](./img/icon.png)
 
-[![Deploy to Netlify h:1.5em](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yhatt/marp-cli-example)
-
----
-
-![bg right 70%](https://assets.zeit.co/image/upload/front/assets/design/now-black.svg)
-
-## **[ZEIT Now](https://zeit.co/now)**
-
-#### Ready to write & host your deck!
-
-[![Deploy with ZEIT Now h:1.5em](https://zeit.co/button)](https://zeit.co/new/project?template=https://github.com/yhatt/marp-cli-example)
+Cute owl!
 
 ---
 
-### <!--fit--> :ok_hand:
-
+## Code block
+FizzBuzz by Python.
+```python
+def FizzBuzz(n):
+    for i in range(n):
+        num = i + 1
+        if (num % 15) == 0:
+            print('FizzBuzz')
+        elif (num % 5) == 0:
+            print('Buzz')
+        elif (num % 3) == 0:
+            print('Fizz')
+        else:
+            print(num)
+```
 ---
 
-![bg 40% opacity blur](https://avatars1.githubusercontent.com/u/3993388?v=4)
+## Math block
 
-### Created by Yuki Hattori ([@yhatt](https://github.com/yhatt))
+Marp Next support KaTex format to wirte Math equations.
 
-https://github.com/yhatt/marp-cli-example
+$$
+\frac{\partial \theta}{\partial t}= \frac{\partial}{\partial z}
+\left[ K(\theta) \left (\frac{\partial \psi}{\partial z} + 1 \right) \right]
+$$
+
