@@ -14,12 +14,8 @@ Pragmatic Programmers - Dawid Bińkuś & Mateusz Małecki
 
 ---
 # Agenda
-##### Programowanie imperatywne a funkcyjne
-- Definicja programowania imperatywnego
-- Definicja programowiania funkcyjnego
-##### Zastosowanie
-- Biblioteka Stream
-- Wstrzykiwanie funkcji
+xxxxx
+
 ---
 # Programowanie imperatywne
 
@@ -71,6 +67,28 @@ class DogService{
   }
 }
 ```
+---
+# Grupowanie danych
+
+---
+```java
+public static Map<Integer, List<String>> groupByScores(Map<String, Integer> scores){
+  Map<Integer, List<String>> byScores = new HashMap<>();
+  for(String name: scores.keySet()) {
+    int score = scores.get(name);
+
+    List<String> names = new ArrayList<>();
+    if(byScores.containsKey(score))
+      names = byScores.get(score);
+
+    names.add(name);
+    byScores.put(score, names);
+  }
+
+  return byScores;
+}
+```
+---
 
 ---
 ## Table
