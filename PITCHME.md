@@ -6,6 +6,7 @@ class:
 paginate: true
 header: 'Pragmatic Programmers - Refactoring to functional style'
 footer: 'Dawid Bińkuś & Mateusz Małecki'
+size: 16:9
 
 ---
 <!-- _class: invert -->
