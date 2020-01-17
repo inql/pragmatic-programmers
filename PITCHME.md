@@ -101,7 +101,7 @@ if (myCurrentCustomer != null)) //Wszędzie pojawiają się null checki!
 CustomerRepository repository = new CustomerRepository();
 CustomerOrError myCurrentCustomer = repository.findCustomerById(42);
 if(myCurrentCustomer.isCustomer()){
-  System.out.println(myCurrentCustomer.getName());
+  System.out.println(myCurrentCustomer.get().getName());
 }
 ```
 
