@@ -4,26 +4,30 @@ theme: simple
 class:
   - lead
 paginate: true
-header: 'Pragmatic Programmers - Refactoring to predictable code'
+header: 'Pragmatic Programmers'
 footer: 'Dawid Bińkuś & Mateusz Małecki'
 ---
 <!-- _class: invert -->
-# Refactoring to predictable code
-###### Using functional patterns
+# Przewidywalny kod
+###### Za pomocą wzorców funkcyjnych
 <br>
 Pragmatic Programmers - Dawid Bińkuś & Mateusz Małecki
 
 ---
-# Agenda
-xxxxx
-
----
-# What and why
-- Kotlin > Java
-- Języki funkcyjne stanowią coraz większy % rynku
-- Elementy funkcyjne pojawiają się w najbardziej popularnych językach programowania - Lambda (Java), LINQ (C#)
+# Ale dlaczego?
+- Rozwiązania funkcyjne dobrze dopełniają się z zasadami SOLID,
+- Funkcyjne rozwiązania stają się coraz bardziej popularne,
+- Elementy funkcyjne pojawiają się w najbardziej popularnych językach programowania - Lambda (Java), LINQ (C#).
 ---
 # Brak efektów ubocznych
+---
+## Czym jest efekt uboczny?
+- Zauważalny efekt wykraczający poza główny cel operacji (zwrócenie wartości),
+
+
+- Modyfikacja stanu poza obrębem funkcji.
+
+---
 ```Java
 User getUserByEmailAndPassword(String email, String password){
   User user = UserService.getByEmailAndPassword(email, password);
@@ -43,6 +47,8 @@ User getUserByEmailAndPassword(String email, String password){
   return user;
 }
 ```
+- Aktualizacja stanu aplikacji bez wiedzy programisty.
+- Proces logowania użytkownika powienien istnieć jako osobna funkcja.
 ---
 # Niezmienialność (immutability)
 ```
@@ -57,17 +63,10 @@ User getUserByEmailAndPassword(String email, String password){
 ```
   Set<ImmutableCustomer> customers = new HashSet<>();
   customers.add(customer);
-  processCustomer(customer);
+  ImmutableCustomer changedCustomer = processCustomer(customer);
 ```
 ---
-# No nulls allowed
----
-### Możliwe powody wystąpienia wartości null w programie:
-- Obiekt nigdy nie został zainicjalizowany,
-- Obiekt nie jest poprawny,
-- Obiekt nie jest potrzebny,
-- Obiekt nie istnieje,
-- Coś się zepsuło :(
+# Unikamy wartości null
 ---
 ### Przykład - pobieranie użytkownika z bazy:
 ```scala
@@ -76,8 +75,15 @@ Customer myCurrentCustomer = repository.findCustomerById(42);
 System.out.println(myCurrentCustomer.getName());
 ```
 
-Co się stanie jeśli użytkownik o danym numerze **id** nie istnieje? 
+- Co się stanie jeśli użytkownik o danym numerze **id** nie istnieje? 
 
+---
+### Możliwe powody wystąpienia wartości null w programie:
+- Obiekt nigdy nie został zainicjalizowany,
+- Obiekt nie jest poprawny,
+- Obiekt nie jest potrzebny,
+- Obiekt nie istnieje,
+- I wiele, wiele więcej.
 ---
 ### Pierwsze rozwiązanie - null check
 ```java
@@ -87,14 +93,69 @@ if (myCurrentCustomer != null)) //Wszędzie pojawiają się null checki!
   System.out.println(myCurrentCustomer.getName());
 ```
 
-Za każdym razem gdy chcemy pobrać użytkownika z bazy musimy się upewnić że jest on prawidłowy, tj. nie jest wartością **null** i to obsłużyć.
+- Za każdym razem gdy chcemy pobrać użytkownika z bazy musimy się upewnić że jest on prawidłowy, tj. nie jest wartością **null** i to obsłużyć.
 
 ---
 ### Możliwe rozwiązanie - Opakowanie Optional
-``` scala
+``` java
 CustomerRepository repository = new CustomerRepository();
 Optional<Customer> myCurrentCustomer = repository.findCustomerById(42);
 myCurrentCustomer.ifPresent(customer -> System.out.println(customer.getName()));
 ```
 
-Powyższe rozwiązanie ze względu na naturę obiektu *Optional*, wymusza na programiście upewnienie się, że dana wartość istnieje.
+- Powyższe rozwiązanie ze względu na naturę obiektu *Optional*, wymusza na programiście upewnienie się, że dana wartość istnieje.
+---
+# Wstrzykiwanie funkcji jako argumenty
+---
+```java
+class Order{
+  private Long id;
+  private List<Item> items;
+  /*
+    methods and accessors ...
+  */
+}
+class Item{
+  private String name;
+  private Double weight;
+  private Double price;
+    /*
+    methods and accessors ...
+  */
+}
+```
+---
+```java
+public List<Double> calculateOrdersWeight(List<Order> orders){
+  List<Double> result = new ArrayList<>();
+  for(Order o : orders){
+    result.add(o.getOrderWeight());
+  }
+  return result;
+}
+```
+---
+```java
+  List<Double> calculateOrdersWeight(List<Order> orders);
+  List<Double> calculateOrdersPrice(List<Order> orders);
+```
+- Co jeśli będziemy chcieli dodać nową funkcjonalność?
+---
+# Rozwiązanie - wstrzykiwanie funkcji.
+```java
+  public List<Double> calculateOrders(List<Order> orders, Function<Order, Double> f) {
+    List<Double> result = new ArrayList<>();
+    for(Order o : orders){
+      result.add(f.apply(o));
+    }
+    return result;
+  }
+```
+---
+```java
+calculateOrders(input, o -> o.getOrderWeight());
+calculateOrders(input, o -> o.getOrderSize());
+calculateOrders(input, o -> o.getOrderPrice());
+```
+---
+# Dziękujemy za uwagę
