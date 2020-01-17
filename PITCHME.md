@@ -15,8 +15,8 @@ Pragmatic Programmers - Dawid Bińkuś & Mateusz Małecki
 
 ---
 # Ale dlaczego?
-- Rozwiązania funkcyjne dobrze dopełniają się z zasadami SOLID,
 - Funkcyjne rozwiązania stają się coraz bardziej popularne,
+- Rozwiązania funkcyjne dobrze dopełniają się z zasadami SOLID,
 - Elementy funkcyjne pojawiają się w najbardziej popularnych językach programowania - Lambda (Java), LINQ (C#).
 ---
 # Brak efektów ubocznych
@@ -96,14 +96,16 @@ if (myCurrentCustomer != null)) //Wszędzie pojawiają się null checki!
 - Za każdym razem gdy chcemy pobrać użytkownika z bazy musimy się upewnić że jest on prawidłowy, tj. nie jest wartością **null** i to obsłużyć.
 
 ---
-### Możliwe rozwiązanie - Opakowanie Optional
+### Możliwe rozwiązanie - Opakowanie CustomerOrError
 ``` java
 CustomerRepository repository = new CustomerRepository();
-Optional<Customer> myCurrentCustomer = repository.findCustomerById(42);
-myCurrentCustomer.ifPresent(customer -> System.out.println(customer.getName()));
+CustomerOrError myCurrentCustomer = repository.findCustomerById(42);
+if(myCurrentCustomer.isCustomer()){
+  System.out.println(myCurrentCustomer.getName());
+}
 ```
 
-- Powyższe rozwiązanie ze względu na naturę obiektu *Optional*, wymusza na programiście upewnienie się, że dana wartość istnieje.
+- Możliwe jest również użycie obiektu typu *Optional*
 ---
 # Wstrzykiwanie funkcji jako argumenty
 ---
