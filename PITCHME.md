@@ -14,6 +14,11 @@ footer: 'Dawid Bińkuś & Mateusz Małecki'
 Pragmatic Programmers - Dawid Bińkuś & Mateusz Małecki
 
 ---
+# Cel: Przewidywalny kod
+- Czy rozumiesz kod, który jest przed tobą?
+- Czy musisz się zagłębiać w całą strukturę, żeby zrozumieć obecną klasę/funkcję?
+
+---
 # Ale dlaczego?
 - Funkcyjne rozwiązania stają się coraz bardziej popularne,
 - Rozwiązania funkcyjne dobrze dopełniają się z zasadami SOLID,
